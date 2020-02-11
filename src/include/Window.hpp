@@ -1,5 +1,5 @@
 #include "SDL2/SDL.h"
-#include <memory>
+// #include <memory>
 #include <string>
 
 using WindowLength = u_int16_t;
@@ -7,8 +7,9 @@ using WindowHeight = u_int16_t;
 namespace window{
     class Window{
     public:
-        Window(WindowLength length, WindowHeight height);
+        Window(WindowLength length, WindowHeight height, std::string windowName);
         Window();
+        ~Window();
         void run();
         void setWindowSize(WindowLength length, WindowHeight height);
     private:
@@ -16,6 +17,6 @@ namespace window{
         WindowHeight height;
         std::string windowName;
 
-        std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
+        SDL_Window* window;
     };
-}
+};
